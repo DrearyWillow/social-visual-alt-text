@@ -109,14 +109,18 @@ let insertAlt = function () {
     });
 
     timelineVideos.forEach(function (userImage) {
+        // DOM unrenders video element when scrolling away
+        const anchorDiv = userImage.parentElement.parentElement.parentElement
+
         if (
-            userImage.getAttribute("data-altdisplayed") !== "true" &&
+            anchorDiv.getAttribute("data-altdisplayed") !== "true" &&
             !userImage.closest('div[data-testid="notifsFeed"]')
         ) {
             // Where to put the alt text in the DOM
-            let imageLink =
-                userImage.parentElement.parentElement.parentElement
-                    .parentElement.parentElement.parentElement;
+            let imageLink = userImage.closest('div[data-testid="contentHider-post"]')
+                ? anchorDiv.parentElement.parentElement.parentElement
+                    .parentElement.parentElement.parentElement
+                : anchorDiv.parentElement.parentElement;
 
             // Container for visible text
             const altText = document.createElement("div");
@@ -143,7 +147,7 @@ let insertAlt = function () {
             }
 
             // Keep track of the videos with alt displayed
-            userImage.setAttribute("data-altdisplayed", "true");
+            anchorDiv.setAttribute("data-altdisplayed", "true");
         }
     });
 };
