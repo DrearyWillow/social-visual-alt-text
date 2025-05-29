@@ -21,7 +21,10 @@ let insertAlt = function () {
         : [];
 
     timelineImages.forEach(function (userImage) {
-        if (userImage.getAttribute("data-altdisplayed") !== "true") {
+        if (
+            userImage.getAttribute("data-altdisplayed") !== "true" &&
+            !userImage.closest('div[data-testid="notifsFeed"]')
+        ) {
             // Where to put the alt text in the DOM
             let imageLink =
                 userImage.parentElement.parentElement.parentElement
@@ -65,7 +68,10 @@ let insertAlt = function () {
     });
 
     timelineGIFs.forEach(function (userImage) {
-        if (userImage.getAttribute("data-altdisplayed") !== "true") {
+        if (
+            userImage.getAttribute("data-altdisplayed") !== "true" &&
+            !userImage.closest('div[data-testid="notifsFeed"]')
+        ) {
             // Where to put the alt text in the DOM
             let imageLink =
                 userImage.parentElement.parentElement.parentElement
@@ -103,7 +109,10 @@ let insertAlt = function () {
     });
 
     timelineVideos.forEach(function (userImage) {
-        if (userImage.getAttribute("data-altdisplayed") !== "true") { 
+        if (
+            userImage.getAttribute("data-altdisplayed") !== "true" &&
+            !userImage.closest('div[data-testid="notifsFeed"]')
+        ) {
             // Where to put the alt text in the DOM
             let imageLink =
                 userImage.parentElement.parentElement.parentElement
