@@ -39,7 +39,7 @@
       "run_at": "document_end"
     },
     {
-      "matches": ["https://bsky.app/*"],
+      "matches": ["https://bsky.app/*", "https://main.bsky.dev/*"],
       "js": ["src/bluesky.js"],
       "run_at": "document_end"
     },
