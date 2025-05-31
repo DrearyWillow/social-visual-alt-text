@@ -153,13 +153,9 @@ let insertAlt = function () {
             !userImage.closest('div[data-testid="notifsFeed"]')
         ) {
             // Where to put the alt text in the DOM
-            let imageLink = (
-                userImage.closest('div[data-testid="postThreadScreen"]') &&
-                !userImage.closest('div[aria-label*="Post by "]') &&
-                userImage.closest('div[data-testid*="postThreadItem-by-"]')?.getAttribute("role") !== "link"
-            )
-                ? anchorDiv.parentElement.parentElement.parentElement.parentElement
-                : anchorDiv.parentElement.parentElement.parentElement.parentElement.parentElement;
+            let imageLink =
+                anchorDiv.parentElement.parentElement.parentElement
+                    .parentElement.parentElement;
 
             // Container for visible text
             const altText = document.createElement("div");
