@@ -153,32 +153,6 @@ let insertAlt = function () {
             !userImage.closest('div[data-testid="notifsFeed"]')
         ) {
             // Where to put the alt text in the DOM
-            // let imageLink = userImage.closest('div[data-testid="contentHider-post"]')
-            //     ? anchorDiv.parentElement.parentElement.parentElement
-            //         .parentElement.parentElement.parentElement
-            //     : anchorDiv.parentElement.parentElement;
-
-            // let imageLink =
-            //     // feed view
-            //     userImage.closest('div[data-testid="contentHider-post"]') ? 
-            //         anchorDiv.parentElement.parentElement.parentElement
-            //         .parentElement.parentElement :
-            //     // thread view, quoted video
-            //     userImage.closest('div[aria-label*="Post by "]') ? 
-            //         anchorDiv.parentElement.parentElement.parentElement
-            //             .parentElement.parentElement :
-            //     // thread view, not in focus
-            //     userImage.closest('div[data-testid*="postThreadItem-by-"]')?.getAttribute("role") === "link" ? 
-            //         anchorDiv.parentElement.parentElement.parentElement
-            //         .parentElement.parentElement :
-            //     // thread view, in focus
-            //     userImage.closest('div[data-testid="postThreadScreen"]') ?
-            //         anchorDiv.parentElement.parentElement.parentElement
-            //             .parentElement :
-            //     // quotes tab
-            //         anchorDiv.parentElement.parentElement.parentElement
-            //             .parentElement.parentElement;
-
             let imageLink = (
                 userImage.closest('div[data-testid="postThreadScreen"]') &&
                 !userImage.closest('div[aria-label*="Post by "]') &&
@@ -186,25 +160,6 @@ let insertAlt = function () {
             )
                 ? anchorDiv.parentElement.parentElement.parentElement.parentElement
                 : anchorDiv.parentElement.parentElement.parentElement.parentElement.parentElement;
-
-
-            // let imageLink =
-            //     // feed view
-            //     userImage.closest('div[data-testid="contentHider-post"]') ? 
-            //         anchorDiv.parentElement.parentElement.parentElement
-            //         .parentElement.parentElement.parentElement :
-            //     // thread view, quoted video
-            //     userImage.closest('div[aria-label*="Post by "]') ? 
-            //         anchorDiv.parentElement.parentElement :
-            //     // thread view, not in focus
-            //     userImage.closest('div[data-testid*="postThreadItem-by-"]')?.getAttribute("role") === "link" ? 
-            //         anchorDiv.parentElement.parentElement.parentElement
-            //         .parentElement.parentElement :
-            //     // thread view, in focus
-            //     userImage.closest('data-testid="postThreadScreen"') ?
-            //         anchorDiv.parentElement.parentElement.parentElement :
-            //     // quotes tab
-            //         anchorDiv.parentElement.parentElement.parentElement.parentElement;
 
             // Container for visible text
             const altText = document.createElement("div");
