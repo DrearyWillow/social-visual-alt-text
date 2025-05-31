@@ -1,3 +1,26 @@
+function linkifyText(rawText) {
+  const isUrl = URL.canParse ??
+    ((url, base) => {
+      try {
+        new URL(url, base);
+        return true;
+      } catch {
+        return false;
+      }
+    });
+
+  return rawText.split(/(\s)/).map(part => {
+    if (
+      isUrl(part) &&
+      ["http:", "https:"].includes(new URL(part).protocol) &&
+      part.split("\n").length === 1
+    ) {
+      return `<a href="${part}" target="_blank" rel="noopener noreferrer">${part}</a>`;
+    }
+    return part;
+  }).join('');
+}
+
 let insertAlt = function () {
     // Images (single or multiple)
     const timelineImages = options.blueskyImages
@@ -54,7 +77,8 @@ let insertAlt = function () {
                 altText.style.padding = "4px 8px";
                 altText.style.fontFamily =
                     'Arial, "Helvetica Neue", Helvetica, sans-serif';
-                altText.insertAdjacentHTML('beforeend', newlineToBr(userImage.getAttribute("alt")));
+                const linkified = linkifyText(userImage.getAttribute("alt"));
+                altText.insertAdjacentHTML('beforeend', newlineToBr(linkified));
             }
 
             // Add the element to the DOM
@@ -97,7 +121,8 @@ let insertAlt = function () {
                 altText.style.padding = "4px 8px";
                 altText.style.fontFamily =
                     'Arial, "Helvetica Neue", Helvetica, sans-serif';
-                altText.insertAdjacentHTML('beforeend', newlineToBr(userImage.getAttribute("aria-label")));
+                const linkified = linkifyText(userImage.getAttribute("aria-label"))
+                altText.insertAdjacentHTML('beforeend', newlineToBr(linkified));
             } else {
                 altText.style.color = options.colorAltText;
                 altText.style.backgroundColor = options.colorAltBg;
@@ -105,7 +130,8 @@ let insertAlt = function () {
                 altText.style.padding = "4px 8px";
                 altText.style.fontFamily =
                     'Arial, "Helvetica Neue", Helvetica, sans-serif';
-                altText.insertAdjacentHTML('beforeend', newlineToBr(userImage.getAttribute("aria-label")));
+                const linkified = linkifyText(userImage.getAttribute("aria-label"));
+                altText.insertAdjacentHTML('beforeend', newlineToBr(linkified));
             }
 
             // Add the element to the DOM
@@ -148,7 +174,8 @@ let insertAlt = function () {
                 altText.style.padding = "4px 8px";
                 altText.style.fontFamily =
                     'Arial, "Helvetica Neue", Helvetica, sans-serif';
-                altText.insertAdjacentHTML('beforeend', newlineToBr(figcaption.textContent));
+                const linkified = linkifyText(figcaption.textContent);
+                altText.insertAdjacentHTML('beforeend', newlineToBr(linkified));
             }
 
             // Add the element to the DOM
