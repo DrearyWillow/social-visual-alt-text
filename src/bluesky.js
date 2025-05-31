@@ -32,7 +32,7 @@ let insertAlt = function () {
     // GIFs
     const timelineGIFs = options.blueskyImages
         ? document.querySelectorAll(
-              'main div[data-testid="contentHider-post"] video[src^="https://t.gifs.bsky.app/"], main div[data-testid="postThreadScreen"] video[src^="https://t.gifs.bsky.app/"]'
+              'main video[src^="https://t.gifs.bsky.app/"]'
           )
         : [];
 
@@ -99,7 +99,7 @@ let insertAlt = function () {
             // Where to put the alt text in the DOM
             let imageLink =
                 userImage.parentElement.parentElement.parentElement
-                    .parentElement.parentElement;
+                    .parentElement;
 
             // Container for visible text
             const altText = document.createElement("div");
